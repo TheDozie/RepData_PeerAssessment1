@@ -41,15 +41,15 @@ dailySteps <- tapply(activity$steps, activity$date, sum)
 
 Here is the histogram of the daily steps:
 ```{r dailySteps, echo=TRUE, fig.width=6}
-hist(dailySteps, main="Histogram of daily total steps", xlab="Daily Steps")
+hist(dailySteps, main="Histogram of daily total steps ", xlab="Daily Steps ")
 ```
 
 The mean and median of the daily steps are now calculated and reported:
 ```{r echo=TRUE}
 
 ## calculate mean and median of the daily steps
-meanSteps <- mean(dailySteps, na.rm=T)
-medianSteps <- median(dailySteps, na.rm=T)
+meanSteps <- mean(dailySteps, na.rm=TRUE)
+medianSteps <- median(dailySteps, na.rm=TRUE)
 
 print(paste("Mean daily steps = ", meanSteps))
 print (paste("Medial of the daily steps = ", medianSteps))
@@ -58,7 +58,7 @@ print (paste("Medial of the daily steps = ", medianSteps))
 ## What is the average daily activity pattern?
 To calculate the average number of steps during 5-minute intervals across all days, the **tapply()** function is used again, this time with the **mean()** function, removing missing values with na.rm=T
 ```{r echo=TRUE}
-averageIntervalSteps <- tapply(activity$steps, activity$interval, mean, na.rm=T)
+averageIntervalSteps <- tapply(activity$steps, activity$interval, mean, na.rm=TRUE)
 ```
 
 To plot the x-axis properly, first generate a time series of 5-minute intervals for the x axis
@@ -70,8 +70,8 @@ timeAxis <-seq.POSIXt(from=strptime("00:00", format="%H:%M"), by="5 min",
 Then use the series for the x-axis in the **plot():**
 ```{r averageIntervalSteps, echo=TRUE, fig.width=6}
 plot(timeAxis,averageIntervalSteps,type="l",
-     main="Average 5-min interval steps",
-     xlab="Time", ylab="Average Interval Steps")
+     main="Average 5-min interval steps ",
+     xlab="Time", ylab="Average Interval Steps ")
 ```
 
 To determine the time interval with the maximum average, find the maximum average, then the index of that in the averages and extract the corresponding time. By default, the POSIX sequence generated for the time axis includes "today" as the date component. So use **substr()** to extract the time-only portion.
@@ -115,13 +115,13 @@ newDailySum <- tapply(newActivity$steps, newActivity$date, sum)
 The histogram is here:
 
 ```{r newDailySteps, echo=TRUE, fig.width=6}
-hist(newDailySum, main="Histogram of daily total steps", xlab="Daily Steps")
+hist(newDailySum, main="Histogram of daily total steps ", xlab="Daily Steps ")
 ```
 
 ### What is the effect of the imputation on the mean and median?
 ```{r echo=TRUE}
-newMeanSteps <- mean(newDailySum, na.rm=T)
-newMedianSteps <- median(newDailySum, na.rm=T)
+newMeanSteps <- mean(newDailySum, na.rm=TRUE)
+newMedianSteps <- median(newDailySum, na.rm=TRUE)
 
 if (meanSteps == newMeanSteps){
       print(paste("Mean daily steps remain the same: ", newMeanSteps))
@@ -154,7 +154,7 @@ The lattice plot is most suitable to produce a plot similar to the example.
 
 ```{r weekend_weekday, echo=TRUE, fig.width=6}
 p <- xyplot(averageSteps ~ interval | weekday, type="l", data=newAverage,
-            xlab="Interval", ylab="Number of steps", layout=c(1,2))
+            xlab="Interval ", ylab="Number of steps ", layout=c(1,2))
 print (p)
 ```
 

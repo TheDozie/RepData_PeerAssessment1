@@ -45,7 +45,7 @@ dailySteps <- tapply(activity$steps, activity$date, sum)
 Here is the histogram of the daily steps:
 
 ```r
-hist(dailySteps, main="Histogram of daily total steps", xlab="Daily Steps")
+hist(dailySteps, main="Histogram of daily total steps ", xlab="Daily Steps ")
 ```
 
 ![plot of chunk dailySteps](figure/dailySteps.png) 
@@ -54,8 +54,8 @@ The mean and median of the daily steps are now calculated and reported:
 
 ```r
 ## calculate mean and median of the daily steps
-meanSteps <- mean(dailySteps, na.rm=T)
-medianSteps <- median(dailySteps, na.rm=T)
+meanSteps <- mean(dailySteps, na.rm=TRUE)
+medianSteps <- median(dailySteps, na.rm=TRUE)
 
 print(paste("Mean daily steps = ", meanSteps))
 ```
@@ -76,7 +76,7 @@ print (paste("Medial of the daily steps = ", medianSteps))
 To calculate the average number of steps during 5-minute intervals across all days, the **tapply()** function is used again, this time with the **mean()** function, removing missing values with na.rm=T
 
 ```r
-averageIntervalSteps <- tapply(activity$steps, activity$interval, mean, na.rm=T)
+averageIntervalSteps <- tapply(activity$steps, activity$interval, mean, na.rm=TRUE)
 ```
 
 To plot the x-axis properly, first generate a time series of 5-minute intervals for the x axis
@@ -90,8 +90,8 @@ Then use the series for the x-axis in the **plot():**
 
 ```r
 plot(timeAxis,averageIntervalSteps,type="l",
-     main="Average 5-min interval steps",
-     xlab="Time", ylab="Average Interval Steps")
+     main="Average 5-min interval steps ",
+     xlab="Time", ylab="Average Interval Steps ")
 ```
 
 ![plot of chunk averageIntervalSteps](figure/averageIntervalSteps.png) 
@@ -150,7 +150,7 @@ The histogram is here:
 
 
 ```r
-hist(newDailySum, main="Histogram of daily total steps", xlab="Daily Steps")
+hist(newDailySum, main="Histogram of daily total steps ", xlab="Daily Steps ")
 ```
 
 ![plot of chunk newDailySteps](figure/newDailySteps.png) 
@@ -158,8 +158,8 @@ hist(newDailySum, main="Histogram of daily total steps", xlab="Daily Steps")
 ### What is the effect of the imputation on the mean and median?
 
 ```r
-newMeanSteps <- mean(newDailySum, na.rm=T)
-newMedianSteps <- median(newDailySum, na.rm=T)
+newMeanSteps <- mean(newDailySum, na.rm=TRUE)
+newMedianSteps <- median(newDailySum, na.rm=TRUE)
 
 if (meanSteps == newMeanSteps){
       print(paste("Mean daily steps remain the same: ", newMeanSteps))
@@ -204,7 +204,7 @@ The lattice plot is most suitable to produce a plot similar to the example.
 
 ```r
 p <- xyplot(averageSteps ~ interval | weekday, type="l", data=newAverage,
-            xlab="Interval", ylab="Number of steps", layout=c(1,2))
+            xlab="Interval ", ylab="Number of steps ", layout=c(1,2))
 print (p)
 ```
 
